@@ -30,6 +30,13 @@ public class TestDataInit {
         member.setName("Test User");
 
         memberRepository.save(member);
+
+        Member member2 = new Member();
+        member2.setLoginId("test2");
+        member2.setPassword("test");
+        member2.setName("Test User2");
+
+        memberRepository.save(member2);
     }
 
 }

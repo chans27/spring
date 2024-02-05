@@ -40,7 +40,6 @@ public class LoginController {
             bindingResult.reject("loginFail", "ID or Password is invalid.");
             return "login/loginForm";
         }
-
         // if login success
 
         // set as session cookie if   do not set time value
