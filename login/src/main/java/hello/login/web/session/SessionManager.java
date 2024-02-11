@@ -21,11 +21,11 @@ public class SessionManager {
      */
     public void createSession(Object value, HttpServletResponse response) {
 
-        //create session id and set value to session
+        //セッションIDを生成し、セッションに値として設定
         String sessionId = UUID.randomUUID().toString();
         sessionStore.put(sessionId, value);
 
-        //create cookie
+        //cookie生成
         Cookie mySessionCookie = new Cookie(SESSION_COOKIE_NAME, sessionId);
         response.addCookie(mySessionCookie);
     }

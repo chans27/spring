@@ -11,30 +11,45 @@ import java.util.UUID;
 
 @Slf4j
 public class LogInterceptor implements HandlerInterceptor {
+
     public static final String LOG_ID = "logId";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
         String uuid = UUID.randomUUID().toString();
+
+        //UUIDをrequestのアトリビュートに設定
         request.setAttribute(LOG_ID, uuid);
-        //@RequestMapping: HandlerMethod
-        if (handler instanceof HandlerMethod) {
+
+        if(handler instanceof HandlerMethod) {
+
+            //＠RequestMapping；HandlerMethod
+            //静的リソース：ResourceHttpRequestHandler
+
+            //呼び出すController　methodの全ての情報が含まれている。
             HandlerMethod hm = (HandlerMethod) handler;
+            hm.getBean();
         }
-        log.info("REQUEST  [{}][{}][{}]", uuid, requestURI, handler);
-        return true; //false 진행X
+
+        log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
+        return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse
-        response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         log.info("postHandle [{}]", modelAndView);
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse
-        response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String requestURI = request.getRequestURI();
+        //requestのアトリビュートから取得
+        String logId = (String) request.getAttribute(LOG_ID);
+
+        log.info("RESPONSE [{}][{}][{}]", logId, requestURI, handler);
+        if (ex != null) {
+            log.error("afterCompletion error", ex);
+        }
     }
 }
