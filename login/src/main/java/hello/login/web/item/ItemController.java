@@ -46,7 +46,7 @@ public class ItemController {
     @PostMapping("/add")
     public String addItem(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        //특정 필드 예외가 아닌 전체 예외
+        //全般的な例外
         if (form.getPrice() != null && form.getQuantity() != null) {
             int resultPrice = form.getPrice() * form.getQuantity();
             if (resultPrice < 10000) {
@@ -59,7 +59,7 @@ public class ItemController {
             return "items/addForm";
         }
 
-        //성공 로직
+        //成功時のロジック
         Item item = new Item();
         item.setItemName(form.getItemName());
         item.setPrice(form.getPrice());
@@ -81,7 +81,7 @@ public class ItemController {
     @PostMapping("/{itemId}/edit")
     public String edit(@PathVariable Long itemId, @Validated @ModelAttribute("item") ItemUpdateForm form, BindingResult bindingResult) {
 
-        //특정 필드 예외가 아닌 전체 예외
+        //全般的な例外
         if (form.getPrice() != null && form.getQuantity() != null) {
             int resultPrice = form.getPrice() * form.getQuantity();
             if (resultPrice < 10000) {

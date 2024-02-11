@@ -19,7 +19,7 @@ public class LoginService {
     public Member login(String loginId, String password) {
         return memberRepository.findByLoginId(loginId)
                 .filter(m -> m.getPassword().equals(password))
-                .orElse(null); //set to default value
+                .orElse(null); //Default値設定
     }
 
 
