@@ -52,7 +52,6 @@ class MemberRepositoryV1Test {
         repository.delete(member.getMemberId());
         assertThatThrownBy(() -> repository.findById(member.getMemberId()))
                 .isInstanceOf(NoSuchElementException.class); //会員がない -> 例外が発生するのが正常
-
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
