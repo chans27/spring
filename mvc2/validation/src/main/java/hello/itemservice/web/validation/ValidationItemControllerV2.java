@@ -31,6 +31,7 @@ public class ValidationItemControllerV2 {
     //컨트롤러가 호출될 때 마다 실행됨
     @InitBinder
     public void init(WebDataBinder dataBinder) {
+        System.out.println("call WebDataBinder");
         dataBinder.addValidators(itemValidator);
     }
 
