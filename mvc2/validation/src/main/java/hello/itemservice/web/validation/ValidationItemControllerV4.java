@@ -94,6 +94,7 @@ public class ValidationItemControllerV4 {
             return "validation/v4/editForm";
         }
 
+        //검증 성공시 수정 실행
         Item itemParam = new Item();
         itemParam.setItemName(form.getItemName());
         itemParam.setPrice(form.getPrice());
