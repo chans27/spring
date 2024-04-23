@@ -35,7 +35,7 @@ public class FormItemController {
 
     @ModelAttribute("itemTypes")
     public ItemType[] itemTypes() {
-        ItemType[] values = ItemType.values();
+        ItemType[] values = ItemType.values(); // values() : 해당 enum의 모든 정보를 배열로 변환
         return values;
     }
 
