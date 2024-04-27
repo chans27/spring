@@ -18,7 +18,6 @@ public class MemberServiceV2 {
 
     public void accountTransfer(String fromId, String toId, int money) throws SQLException {
         Connection con = dataSource.getConnection();
-
         try {
             con.setAutoCommit(false); //transaction start
             //logic
@@ -36,9 +35,9 @@ public class MemberServiceV2 {
         Member fromMember = memberRepository.findById(con, fromId);
         Member toMember = memberRepository.findById(con, toId);
 
-        memberRepository.update(fromId,fromMember.getMoney() - money);
+        memberRepository.update(con,fromId,fromMember.getMoney() - money);
         validation(toMember);
-        memberRepository.update(toId, fromMember.getMoney() + money);
+        memberRepository.update(con,toId, fromMember.getMoney() + money);
     }
 
     private static void validation(Member toMember) {
