@@ -17,7 +17,7 @@ public class CheckedTest {
     @Test
     void check_throw() {
         Service service = new Service();
-        assertThatThrownBy(() -> service.callThrow())
+        assertThatThrownBy(service::callThrow)
                 .isInstanceOf(MyCheckedException.class);
     }
 

@@ -16,7 +16,7 @@ public class UncheckedTest {
     @Test
     void unchecked_throw() {
         Service service = new Service();
-        Assertions.assertThatThrownBy(() -> service.callThrow())
+        Assertions.assertThatThrownBy(service::callThrow)
                 .isInstanceOf(MyUncheckedException.class);
     }
 
