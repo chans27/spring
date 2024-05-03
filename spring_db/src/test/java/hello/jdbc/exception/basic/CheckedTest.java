@@ -24,7 +24,7 @@ public class CheckedTest {
     /**
      * Exception을 상속받은 예외는 체크 예외가 된다.
      */
-    static class MyCheckedException extends RuntimeException {
+    static class MyCheckedException extends Exception {
         public MyCheckedException(String message) {
             super(message);
         }
