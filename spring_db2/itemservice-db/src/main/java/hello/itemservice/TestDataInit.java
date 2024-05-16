@@ -14,7 +14,7 @@ public class TestDataInit {
     private final ItemRepository itemRepository;
 
     /**
-     * 확인용 초기 데이터 추가
+     * 확인용 초기 데이터 추가 (서버 기동시)
      */
     @EventListener(ApplicationReadyEvent.class)
     public void initData() {

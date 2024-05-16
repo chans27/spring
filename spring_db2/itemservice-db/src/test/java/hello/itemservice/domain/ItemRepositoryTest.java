@@ -21,7 +21,7 @@ class ItemRepositoryTest {
 
     @AfterEach
     void afterEach() {
-        //MemoryItemRepository 의 경우 제한적으로 사용
+        //MemoryItemRepository의 경우에만 제한적으로 사용
         if (itemRepository instanceof MemoryItemRepository) {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
@@ -69,7 +69,7 @@ class ItemRepositoryTest {
         itemRepository.save(item2);
         itemRepository.save(item3);
 
-        //둘 다 없음 검증
+        //둘 다 없음 검증 (이름, 최대가격)
         test(null, null, item1, item2, item3);
         test("", null, item1, item2, item3);
 
@@ -81,12 +81,12 @@ class ItemRepositoryTest {
         //maxPrice 검증
         test(null, 10000, item1);
 
-        //둘 다 있음 검증
+        //둘 다 있음 검증 (이름, 최대가격)
         test("itemA", 10000, item1);
     }
 
     void test(String itemName, Integer maxPrice, Item... items) {
-        List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
-        assertThat(result).containsExactly(items);
+        List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice)); //조건 없을경우 모든 데이터 취득
+        assertThat(result).containsExactly(items); //순서를 포함한 값 확인
     }
 }
