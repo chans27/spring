@@ -11,27 +11,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @SpringBootTest
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
 
-    @Autowired
-    PlatformTransactionManager transactionManager;
-    TransactionStatus status;
-
-    @BeforeEach
-    void beforeEach() {
-        //start transaction
-         status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-    }
+//    @Autowired PlatformTransactionManager transactionManager;
+//    TransactionStatus status;
+//
+//    @BeforeEach
+//    void beforeEach() {
+//        //start transaction
+//        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+//    }
 
     @AfterEach
     void afterEach() {
@@ -40,8 +41,7 @@ class ItemRepositoryTest {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
         //rollback transaction
-        transactionManager.rollback(status);
-
+        //transactionManager.rollback(status);
     }
 
     @Test
@@ -79,7 +79,7 @@ class ItemRepositoryTest {
     void findItems() {
         //given
         Item item1 = new Item("itemA-1", 10000, 10);
-        Item item2 = new Item("itemA-2", 20000, 20);
+        Item item2 = new Item("itemA-3", 20000, 20);
         Item item3 = new Item("itemB-1", 30000, 30);
 
         itemRepository.save(item1);
