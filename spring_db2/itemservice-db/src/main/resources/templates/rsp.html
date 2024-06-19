@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RSP</title>
+  <style>
+    #computer {
+      width: 142px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id = "computer"></div>
+  <div>
+    <button id="scissors" class="btn">가위</button>
+    <button id="rock" class="btn">바위</button>
+    <button id="paper" class="btn">보</button>
+  </div>
+  <div id="score">0</div>
+  <script>
+    const $computer = document.querySelector('#computer');
+    const $score = document.querySelector('#score');
+    const $rock = document.querySelector('#rock');
+    const $scissors = document.querySelector('#scissors');
+    const $paper = document.querySelector('#paper');
+    const IMG_URL = './rsp.png';
+    $computer.style.background = `url(${IMG_URL}) 0 0`
+    $computer.style.backgroundSize = 'auto 200px';
+
+    const rspX = {
+      scissors : '0',
+      rock : '-220px',
+      paper : '-440px'
+    }
+
+    let computerChoice = 'scissors';
+
+    function changeComputerHand() {
+      if (computerChoice === 'scissors') {
+        computerChoice = 'rock';
+      } else if (computerChoice === 'rock') {
+        computerChoice = 'paper'
+      } else {
+        computerChoice = 'scissors'
+      }
+      $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`
+      $computer.style.backgroundSize = 'auto 200px';
+    }
+    let intervalId = setInterval(changeComputerHand, 50);
+
+    // 버튼을 누르면 clearInterval이 실행되어 멈추고, setTimeout 함수가 1초뒤에 실행됨
+    //clickButton 5번 호출, 인터벌 1번, 2번, 3번, 4번, 5번(마지막이 intervalId 변수에 저장된다)
+    // 그 다음에 버튼을 클릭하면 인터벌 5번만 취소된다.
+    let clickable = true;
+    const clickButton = (event) => {
+      if(clickable) {
+        clearInterval(intervalId);
+          clickable = false;
+        // 점수 계산 및 화면 표시
+        const myChoice = event.target.textContent === '바위'
+          ? 'rock'
+          : event.target.textContent === '가위'
+            ? 'scissors'
+            : 'paper';
+        console.log(myChoice)
+        setTimeout(() => {
+          clickable = true;
+          intervalId = setInterval(changeComputerHand, 50);
+        }, 1000)
+      }
+    };
+
+    function addRspEvent() {
+      $rock.addEventListener('click', clickButton);
+      $scissors.addEventListener('click', clickButton);
+      $paper.addEventListener('click', clickButton);
+    }
+    function removeRspEvent() {
+      $rock.removeEventListener('click', clickButton);
+      $scissors.removeEventListener('click', clickButton);
+      $paper.removeEventListener('click', clickButton);
+    }
+    addRspEvent();
+  </script>
+</body>
+</html>

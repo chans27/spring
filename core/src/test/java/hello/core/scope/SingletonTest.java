@@ -18,11 +18,10 @@ public class SingletonTest {
         SingletonBean singletonBean1 = ac.getBean(SingletonBean.class);
         SingletonBean singletonBean2 = ac.getBean(SingletonBean.class);
 
+        //참조값이 같다
         assertThat(singletonBean1).isSameAs(singletonBean2);
         ac.close();
     }
-
-
 
     @Scope("singleton")
     static class SingletonBean {
