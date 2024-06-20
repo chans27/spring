@@ -57,6 +57,6 @@ public class RequestBocyStringController {
 
         log.info("messageBody ={}", messageBody);
 
-        return "ok";
+        return "messageBody : " + messageBody;
     }
 }
