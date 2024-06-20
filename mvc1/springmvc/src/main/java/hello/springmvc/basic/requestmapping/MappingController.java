@@ -22,9 +22,9 @@ public class MappingController {
     }
 
     @GetMapping("mapping/{userId}")
-    public String mappingPath(@PathVariable("userId") String data) {
+    public String mappingPath(@PathVariable("userId") String data) { //
         log.info("mappingPath userId={}", data);
-        return "ok";
+        return data;
     }
 
     /**
@@ -32,7 +32,8 @@ public class MappingController {
     @GetMapping("/mapping/users/{userId}/orders/{orderId}")
     public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
         log.info("mappingPath userId={}, orderId={}", userId, orderId);
-        return "ok";
+        String rtnStr = "userId = " + userId + ", orderId = " + orderId;
+        return rtnStr;
     }
 
     @PostMapping(value = "/mapping-consume", consumes = "application/json")
@@ -40,5 +41,4 @@ public class MappingController {
         log.info("mappingConsumes");
         return "ok";
     }
-
 }
