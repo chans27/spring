@@ -16,6 +16,7 @@ public class RequestBodyStringServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // HTTP의 메세지바디의 데이터를 InputStream으로 읽음
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
