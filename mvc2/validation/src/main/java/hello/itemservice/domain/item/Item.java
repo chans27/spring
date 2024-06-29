@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 //@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합은 만원이상")
 public class Item {
 
-//    @NotNull(groups = UpdateCheck.class) // modify
+//    @NotNull(groups = UpdateCheck.class) // 수정시에만 적용
     private Long id;
 
 //    @NotBlank(groups = {SaveCheck.class, UpdateCheck.class})
