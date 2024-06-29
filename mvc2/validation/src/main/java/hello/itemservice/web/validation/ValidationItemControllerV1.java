@@ -48,7 +48,7 @@ public class ValidationItemControllerV1 {
         //검증 오류 결과를 보관
         Map<String, String> errors = new HashMap<>();
 
-        //검증 로직
+        //검증 로직 (만약 검증시 오류가 발생하면 어떤 검증에서 오류가 발생했는지 정보를 담아둔다)
         if (!StringUtils.hasText(item.getItemName())) {
             errors.put("itemName", "상품 이름은 필수 입니다.");
         }
@@ -60,7 +60,6 @@ public class ValidationItemControllerV1 {
         }
 
         //특정 필드가 아닌 복합 룰 검증
-
         if (item.getPrice() != null && item.getQuantity() != null) {
             int resultPrice = item.getPrice() * item.getQuantity();
             if (resultPrice < 10000) {
@@ -69,6 +68,8 @@ public class ValidationItemControllerV1 {
         }
 
         //검증에 실패하면 다시 에러 폼으로
+        // 만약 검증에서 오류 메시지가 하나라도 있으면 오류 메시지를 출력하기 위해 model 에 errors 를 담고,
+        // 입력 폼이 있 는 뷰 템플릿으로 보낸다.
         if (!errors.isEmpty()) {
             log.info("errors={}", errors);
             model.addAttribute("errors", errors);
