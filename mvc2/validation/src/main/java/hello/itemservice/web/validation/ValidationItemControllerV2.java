@@ -26,7 +26,7 @@ import java.util.Map;
 public class ValidationItemControllerV2 {
 
     private final ItemRepository itemRepository;
-    private final ItemValidator itemValidator;
+    private final ItemValidator itemValidator; // 상품을 추가할 때 검증하기 위해 만든 검증클래스
 
     //컨트롤러가 호출될 때 마다 실행됨
     @InitBinder
@@ -70,7 +70,6 @@ public class ValidationItemControllerV2 {
 //        }
 //
 //        //특정 필드가 아닌 복합 룰 검증
-//
 //        if (item.getPrice() != null && item.getQuantity() != null) {
 //            int resultPrice = item.getPrice() * item.getQuantity();
 //            if (resultPrice < 10000) {
@@ -91,10 +90,20 @@ public class ValidationItemControllerV2 {
 //        return "redirect:/validation/v2/items/{itemId}";
 //    }
 
+    /**
+     //         * `objectName` : 오류가 발생한 객체 이름
+     //         * `field` : 오류 필드
+     //         * `rejectedValue` : 사용자가 입력한 값(거절된 값)
+     //         * `bindingFailure` : 타입 오류 같은 바인딩 실패인지, 검증 실패인지 구분 값
+     //         * `codes` : 메시지 코드
+     //         * `arguments` : 메시지에서 사용하는 인자
+     //         * `defaultMessage` : 기본 오류 메시지
+     //         */
 //    @PostMapping("/add")
 //    public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 //
 //        //검증 로직
+//        //new FieldError()의 rejectedValue에 의해 오류가 발생한 필드를 저장
 //        if (!StringUtils.hasText(item.getItemName())) {
 //            bindingResult.addError(new FieldError("item", "itemName", item.getItemName(), false, null, null, "상품 이름은 필수입니다."));
 //        }
@@ -228,6 +237,7 @@ public class ValidationItemControllerV2 {
 //        return "redirect:/validation/v2/items/{itemId}";
 //    }
 
+    // @Validated : 검증기를 실행하라는 애노테이션
     @PostMapping("/add")
     public String addItemV6(@Validated @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
