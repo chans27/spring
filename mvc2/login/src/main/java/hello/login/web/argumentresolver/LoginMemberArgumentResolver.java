@@ -16,19 +16,20 @@ import javax.servlet.http.HttpSession;
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        log.info("supportsParameter 実行");
+        // supportsParameter : @Login 애노테이션이 있으면서 Member 타입이면 해당 ArgumentResolver 가 사용된다.
+        log.info("supportsParameter 실행");
 
+        // 만든 애노테이션 등록
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
         boolean hasMemberType = Member.class.isAssignableFrom(parameter.getParameterType());
-
-
         return hasLoginAnnotation && hasMemberType;
     }
 
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
+        //컨트롤러 호출 직전에 호출 되어서 필요한 파라미터 정보를 생성해준다.
 
-        log.info("resolveArgument 実行");
+        log.info("resolveArgument 실행");
 
         HttpServletRequest request = (HttpServletRequest) nativeWebRequest.getNativeRequest();
         HttpSession session = request.getSession(false);

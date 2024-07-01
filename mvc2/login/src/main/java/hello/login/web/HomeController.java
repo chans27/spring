@@ -84,6 +84,7 @@ public class HomeController {
         return "loginHome";
     }
 
+    // 만든 @Login 애노테이션 등록
     @GetMapping("/")
     public String homeLoginV3ArgumentResolver(@Login Member loginMember, Model model) {
 
