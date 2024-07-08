@@ -24,7 +24,7 @@ public class MemberRepositoryV0 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMemberId());
             pstmt.setInt(2, member.getMoney());
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); // 데이터 변경시 (저장, 수정, 삭제) 사용
         } catch (SQLException e) {
             log.error("DB ERROR", e);
             throw e;
@@ -38,14 +38,14 @@ public class MemberRepositoryV0 {
 
         Connection con = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        ResultSet rs = null; // select 쿼리의 결과가 순서대로 들어간다.
 
         try {
             con = getConnection();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, memberId);
 
-            rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery(); // 데이터 조회
             if (rs.next()) {
                 Member member = new Member();
                 member.setMemberId(rs.getString("member_id"));
