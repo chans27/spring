@@ -36,7 +36,7 @@ public class MemberServiceV4 {
 
     private static void validation(Member toMember) {
         if (toMember.getMemberId().equals("ex")) {
-            throw new IllegalStateException("error occurs when transferring");
+            throw new IllegalStateException("계좌 이체중 에러 발생");
         }
     }
 }
