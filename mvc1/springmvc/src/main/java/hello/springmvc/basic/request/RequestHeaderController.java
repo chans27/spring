@@ -28,11 +28,11 @@ public class RequestHeaderController {
                           ) {
         log.info("request = {}", request);
         log.info("response = {}", response);
-        log.info("httpMethod = {}", httpMethod);
-        log.info("local = {}", locale);
-        log.info("headerMap = {}", headerMap);
-        log.info("header host = {}", host);
-        log.info("myCookie = {}", cookie);
+        log.info("httpMethod = {}", httpMethod); // HTTP 메서드 조회
+        log.info("local = {}", locale); // Locale 정보 조회 (접속국가)
+        log.info("headerMap = {}", headerMap); // 모든 헤더를 MultiValueMap 형식으로 조회
+        log.info("header host = {}", host); // 특정 HTTP 헤더 조회
+        log.info("myCookie = {}", cookie); // 쿠키 조회
 
         return "ok";
     }

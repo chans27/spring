@@ -41,7 +41,7 @@ public class RequestBodyJsonController {
     @PostMapping("/request-body-json-v2")
     public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
 
-        log.info("messageBody={}", messageBody); //넘어온 json 데이터
+        log.info("messageBody={}", messageBody); // messageBody 파라미터에서 받아옴
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
@@ -50,7 +50,7 @@ public class RequestBodyJsonController {
 
     @ResponseBody
     @PostMapping("/request-body-json-v3")
-    public String requestBodyJsonV3(@RequestBody HelloData helloData)  {
+    public String requestBodyJsonV3(@RequestBody HelloData helloData)  { // 객체를 직접 지정
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
         return "ok";
     }
@@ -58,7 +58,7 @@ public class RequestBodyJsonController {
     @ResponseBody
     @PostMapping("/request-body-json-v4")
     public String requestBodyJsonV4(@RequestBody HttpEntity<HelloData> httpEntity)  {
-        HelloData data = httpEntity.getBody();
+        HelloData data = httpEntity.getBody(); // HttpEntity 사용
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return "ok";
     }
@@ -67,6 +67,6 @@ public class RequestBodyJsonController {
     @PostMapping("/request-body-json-v5")
     public HelloData requestBodyJsonV5(@RequestBody HelloData data)  {
         log.info("username={}, age={}", data.getUsername(), data.getAge());
-        return data;
+        return data; // @ResponseBody를 이용하여 Http 메세지 바디에 직접 입력
     }
 }
