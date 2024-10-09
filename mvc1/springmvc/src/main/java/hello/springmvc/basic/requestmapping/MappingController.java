@@ -22,13 +22,13 @@ public class MappingController {
     }
 
     @GetMapping("mapping/{userId}")
-    public String mappingPath(@PathVariable("userId") String data) { //
+    public String mappingPath(@PathVariable("userId") String data) {
         log.info("mappingPath userId={}", data);
         return data;
     }
 
     /**
-     * PathVariable 사용 다중 */
+     * PathVariable 여러개 사용 */
     @GetMapping("/mapping/users/{userId}/orders/{orderId}")
     public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
         log.info("mappingPath userId={}, orderId={}", userId, orderId);
