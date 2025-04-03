@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-//    MemberService memberService = new MemberServiceImpl();
+//    MemberService memberService = new MemberServiceImpl(); 의존 관계가 인터페이스 뿐만 아니라 구현까지 모두 의존
     MemberService memberService;
 
     @BeforeEach

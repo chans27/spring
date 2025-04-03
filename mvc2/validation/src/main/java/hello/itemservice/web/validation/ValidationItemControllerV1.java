@@ -46,7 +46,7 @@ public class ValidationItemControllerV1 {
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, Model model) {
 
         //검증 오류 결과를 보관
-        Map<String, String> errors = new HashMap<>();
+        Map<String, String> errors = new HashMap<>(); // 에러를 담기위한 Map
 
         //검증 로직 (만약 검증시 오류가 발생하면 어떤 검증에서 오류가 발생했는지 정보를 담아둔다)
         if (!StringUtils.hasText(item.getItemName())) {
