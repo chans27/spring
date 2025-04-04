@@ -16,7 +16,7 @@ public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
 
     @Override
     public boolean supports(Object handler) {
-        return (handler instanceof ControllerV4); //v3컨트롤러 인지 확인
+        return (handler instanceof ControllerV4); //v4컨트롤러 인지 확인
     }
 
     //supports로 걸러진 애를 찾아서 handle메서드를 호출하기때문에 캐스팅해서 사용해도 괜찮음
