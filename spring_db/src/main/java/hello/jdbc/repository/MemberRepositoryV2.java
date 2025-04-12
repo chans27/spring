@@ -127,7 +127,6 @@ public class MemberRepositoryV2 {
         String sql = "update member set money=? where member_id=?";
 
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
 
         try {
             pstmt = con.prepareStatement(sql);

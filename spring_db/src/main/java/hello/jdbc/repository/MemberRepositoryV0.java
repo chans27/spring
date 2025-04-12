@@ -24,7 +24,7 @@ public class MemberRepositoryV0 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMemberId());
             pstmt.setInt(2, member.getMoney());
-            pstmt.executeUpdate(); // 데이터 변경시 (저장, 수정, 삭제) 사용
+            pstmt.executeUpdate(); // 데이터 변경시 (저장, 수정, 삭제) 사용m, 실제 데이터베이스에 전달
         } catch (SQLException e) {
             log.error("DB ERROR", e);
             throw e;
