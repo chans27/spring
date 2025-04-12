@@ -30,11 +30,11 @@ public class FrontControllerServletV3 extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        System.out.println("requestURI = " + requestURI);
+        System.out.println("requestURI = " + requestURI); // 요청받은 uri 주소 취득
 
         ControllerV3 controller = controllerMap.get(requestURI);
         if(controller == null) {
-            System.out.println("존재하지 않는 컨트롤러");
+            System.out.println("존재하지 않는 컨트롤러 - v3");
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
@@ -63,6 +63,7 @@ public class FrontControllerServletV3 extends HttpServlet {
     }
 
     private static Map<String, String> createParamMap(HttpServletRequest request) {
+        System.out.println("createParamMap 메서드 실행");
         Map<String, String> paramMap = new HashMap<>();
         request.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
