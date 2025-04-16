@@ -35,7 +35,7 @@ public class TxLevelTest {
     static class LevelService {
 
 
-        @Transactional(readOnly = false)
+        @Transactional(readOnly = false) // (prioritized)
         public void write() {
             log.info("call write");
             printTxINfo();
