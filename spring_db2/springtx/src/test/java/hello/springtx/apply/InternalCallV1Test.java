@@ -43,10 +43,14 @@ public class InternalCallV1Test {
     @Slf4j
     static class CallService {
 
+        /**
+         * Spring AOP 프록시 객체에 의해 실행된게 아닌, 클래스 내부에서
+         * internal()을 호출 하기 떄문에 트랜잭션이 적용되지 않는다.
+         */
         public void external() {
           log.info("call external");
           printTxInfo();
-          internal();
+          internal(); // this.internal() -> 프록시 객체를 거치지 않고 같은 클래스 내에서 바로 호출
         }
 
         @Transactional
